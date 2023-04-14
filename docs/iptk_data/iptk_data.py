@@ -10,8 +10,10 @@ class Normalize:
     def __init__(self):
         pass
 
-    def normalize(self, data, data_type='str'):
+    def normalize(self, data, data_type='str', encoding_type=None):
         
+        data = self.encode(data, encoding_type)
+
         if data_type == 'date':
             data = self.date(data)
         
@@ -19,24 +21,31 @@ class Normalize:
             data_type = data.__class__.__name__
 
         if data_type == 'str':
-            data = self.string(data)
+            data = self.string(data, encoding_type)
         
         elif data_type == 'int':
             data = self.num(data)
 
         return data
+    
+    def encode(self, data, encoding_type):
+        
+        if not encoding_type:
+            #Unidecode string
+            data = unidecode(data)
+        
+        else:
+            data = data.encode(encoding_type)
 
-
+        return data
 
     def string(self, string):
+        
         #Put all letters to lower case
         string = string.lower()
         
         #Remove Whitespace
         string = string.strip()
-        
-        #Unidecode string
-        string = unidecode(string)
 
         #Remove punctuation
         string = re.sub(r"[^\w\s]", "", string)

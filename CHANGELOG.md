@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Normalize.normalize() in iptk_data.py as main logic, to determine file type and return appropriately normalised data.
 - test modules for unit testing on both files.py and data.py
+- Encoding function added to Normalize class.
 
 ### Changed
 - Moved modules into separate folders to ensure for separation of concerns.
