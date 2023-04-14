@@ -1,4 +1,5 @@
 from unidecode import unidecode
+import re
 from spellchecker import SpellChecker
 
 #Init spell checker
@@ -15,7 +16,9 @@ class Normalize:
         
         #Unidecode string
         string = unidecode(string)
-        
+
+        #Remove punctuation
+        string = re.sub(r"[^\w\s]", "", string)
         return string
     
     def num(num):
