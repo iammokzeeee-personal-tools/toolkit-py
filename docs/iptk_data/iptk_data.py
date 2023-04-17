@@ -21,7 +21,7 @@ class Normalize:
             data_type = data.__class__.__name__
 
         if data_type == 'str':
-            data = self.string(data, encoding_type)
+            data = self.string(data)
         
         elif data_type == 'int':
             data = self.num(data)
