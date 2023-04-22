@@ -7,9 +7,14 @@ present = data.Present()
 # TEST NORMALIZE CLASS #
 
 def test_normalize():
+    #print(normalize.normalize("Héllø Wórld!"))
     assert normalize.normalize("Héllø Wórld!") == 'hello world'
-    print(normalize.normalize('19850603', data_type='date'))
-    assert normalize.normalize('19850603', data_type='date') == '1985/06/03'
+    # Date
+    print(normalize.normalize('19850603'))
+    assert normalize.normalize('19850603') == '1985/06/03'
+    # URL
+    assert normalize.string('Www.hello-world.com') == 'www.hello-world.com'
+    assert normalize.string('https://wWw.hello-world.com') == 'https://www.hello-world.com'
     print('No exceptions for Normalize.normalize()')
 
 # Test normalize date
@@ -21,6 +26,7 @@ def test_normalize_date():
 # Test normalize string
 def test_normalize_string():
     assert normalize.string('Ø [Phase]') == 'o phase'
+    #print(normalize.string("Héllø Wórld!"))
     assert normalize.string("Héllø Wórld!") == 'hello world'
     assert normalize.string("HELLO WORLD") == 'hello world'
     assert normalize.string('hello world') == 'hello world'
